@@ -1,9 +1,13 @@
 #include<bits/stdc++.h>
+#include<conio.h>
+#include<stdlib.h>
 
 using namespace std;
 
 int board[4][4]; //in ra bang choi game
 int temp[4][4];
+int canPlay = 1;
+
 
 void copyBoard()
 {
@@ -242,6 +246,7 @@ void rightMove(int a[4][4]) //di chuyen phai
 
 
 
+
 int main()
 {
     srand(time(0));
@@ -250,10 +255,27 @@ int main()
     newGame();
     while(true)
     {
+        while(!canPlay)
+        {
+            system("cls");
+            printUI();
+            cout<< "Choi tiep khong?" << endl;
+            cout << "Co: y/ Khum: n" << endl;
+            char answer = getch();
+            if(answer=='y')
+            {
+                canPlay=1;
+                newGame();
+
+            }
+            else if(answer=='n') return 0;
+        }
+
         copyBoard();
+        system("cls");
         printUI();
-        char command;
-        cin >> command;
+        char command = getch();
+
         switch(command)
         {
         case 'n':
@@ -272,6 +294,7 @@ int main()
             if(!checkOver(board))
             {
                 cout << "Thua roi nha cu" ;
+                canPlay=0;
                 break;
             }
             break;
@@ -287,6 +310,7 @@ int main()
             if(!checkOver(board))
             {
                 cout << "Thua roi nha cu" ;
+                canPlay=0;
                 break;
             }
             break;
@@ -302,6 +326,7 @@ int main()
             if(!checkOver(board))
             {
                 cout << "Thua roi nha cu" ;
+                canPlay=0;
                 break;
             }
             break;
@@ -317,6 +342,7 @@ int main()
             if(!checkOver(board))
             {
                 cout << "Thua roi nha cu" ;
+                canPlay=0;
                 break;
             }
             break;
